@@ -23,8 +23,8 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     TYPE_USER = (
-        ('P', 'Persona'),
-        ('O', 'Organización'),
+        ('A', 'Adopter'),
+        ('O', 'Organization'),
     )
     
     uuid = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
@@ -52,7 +52,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def save(self, *args, **kwargs):
         # Si el objeto ya existe en la base de datos, recupera la imagen anterior
-        if self.pk and CustomUser.objects.filter(pk=self.pk).exists():
+        if self.pk and CustomUser.objects.filter(pk = self.pk).exists():
             old_profile_picture = CustomUser.objects.get(pk = self.pk).profile_picture
         else:
             old_profile_picture = None
@@ -64,5 +64,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             old_profile_picture.storage.delete(old_profile_picture.name)
         
     class Meta:
-        verbose_name = "Usuario"
-        verbose_name_plural = "Usuarios"
+        verbose_name = "User"
+        verbose_name_plural = "Users"
+
+
+class AbstractBaseModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add = True)
+    modified_at = models.DateTimeField(auto_now = True)
+    created_by = models.ForeignKey(CustomUser, on_delete = models.CASCADE, related_name = '+')
+    modified_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = '+', null = True, blank = True)
+
+    class Meta:
+        abstract = True
