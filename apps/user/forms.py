@@ -37,7 +37,8 @@ class CustomUserForm(UserCreationForm):
         
         self.fields['profile_picture'].label = 'Imagen de perfil'
         self.fields['profile_picture'].widget = forms.FileInput()
-        self.fields['profile_picture'].widget.attrs['class'] = 'form-control filepond'
+        self.fields['profile_picture'].widget.attrs['class'] = 'form-control'
+        self.fields['profile_picture'].widget.attrs['onchange'] = 'previewImage(event);'
         self.fields['profile_picture'].widget.attrs['accept'] = 'image/jpg, image/jpeg, image/png'
         self.fields['profile_picture'].widget.attrs['aria-describedby'] = 'profile_pictureHelp'
         

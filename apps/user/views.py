@@ -16,14 +16,12 @@ class SignupView(FormView):
     def form_valid(self, form):
         # Procesa la imagen de perfil
         profile_picture = self.request.FILES.get('profile_picture')
-        print(self.request.FILES)
         # Si se ha seleccionado una imagen de perfil, la guardamos
         if profile_picture:
             form.cleaned_data['profile_picture'] = profile_picture
         else:
             # Si no se ha seleccionado una imagen de perfil, asignamos None al campo para que no haya problemas al guardar el usuario
-            #form.cleaned_data['profile_picture'] = None
-            return
+            form.cleaned_data['profile_picture'] = None
         
         # Guardar el usuario
         form.save()

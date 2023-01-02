@@ -1,40 +1,5 @@
 $(document).ready(function () {
-    
-    // Inicializar Filepond en el elemento con clase "filepond"
-    FilePond.registerPlugin(
-        FilePondPluginFileValidateType,
-        FilePondPluginImageExifOrientation,
-        FilePondPluginImagePreview,
-        FilePondPluginImageCrop,
-        FilePondPluginImageResize,
-        FilePondPluginImageTransform,
-        FilePondPluginImageEdit
-    );
 
-    // Select the file input and use 
-    // create() to turn it into a pond
-    const filePondElement = FilePond.create(
-        document.querySelector('.filepond'),
-        {
-            labelIdle: `Arrastra y suelta tu imagen o <span class="filepond--label-action">Examinar</span>`,
-            imagePreviewHeight: 170,
-            imageCropAspectRatio: '1:1',
-            imageResizeTargetWidth: 200,
-            imageResizeTargetHeight: 200,
-            stylePanelLayout: 'compact',
-            styleLoadIndicatorPosition: 'center bottom',
-            styleButtonRemoveItemPosition: 'center bottom',
-        }
-    );
-    
-    filePondElement.on('addfile', (event, file) => {
-        FilePond.getFiles(filePondElement).then((files) => {
-            // Asigna la lista de archivos al input de Django
-            $('#id_profile_picture').prop('files', files);
-        });
-    });
-
-    
     $("#show_hide_password1 a").on('click', function(event) {
         event.preventDefault();
         if($('#show_hide_password1 input').attr("type") == "text"){
@@ -60,3 +25,21 @@ $(document).ready(function () {
         }
     });
 });
+
+const previewImage = (event) => {
+    // Obtiene la imagen
+    const imageFiles = event.target.files;
+    // Cuenta el número de imagenes seleccionadas
+    const imageFilesLength = imageFiles.length;
+    // Si se selecciona al menos una imagen, proceda a mostrar la vista previa
+    if (imageFilesLength > 0) {
+        // Obtiene la ruta de la imagen
+        const imageSrc = URL.createObjectURL(imageFiles[0]);
+        // Seleccione el elemento de vista previa de la imagen
+        const imagePreviewElement = document.querySelector("#preview-selected-image");
+        // Asigna la ruta al elemento de vista previa de la imagen
+        imagePreviewElement.src = imageSrc;
+        // Muestra la imagen cambiando el valor de visualización a "block".
+        imagePreviewElement.style.display = "block";
+    }
+};
