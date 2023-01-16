@@ -21,5 +21,6 @@ from apps.user.views import IndexView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('apps.user.urls')),
+    path('pet/', include('apps.pet.urls')),
     path('', IndexView.as_view(), name = 'index'),
 ]
