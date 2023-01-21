@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 from apps.user.validations import validate_image_size, validate_image_format, generate_path_upload_images
@@ -23,8 +24,8 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     TYPE_USER = (
-        ('A', 'Adopter'),
-        ('O', 'Organization'),
+        ('A', _('Adopter')),
+        ('O', _('Organization')),
     )
     
     uuid = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
@@ -64,8 +65,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             old_profile_picture.storage.delete(old_profile_picture.name)
         
     class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
+        verbose_name = "Usuario"
+        verbose_name_plural = "Usuarios"
 
 
 class AbstractBaseModel(models.Model):

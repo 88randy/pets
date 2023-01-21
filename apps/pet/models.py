@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from apps.user.models import AbstractBaseModel
 from apps.pet.validations import validate_image_format, validate_image_size, validate_phone, generate_path_upload_images
@@ -9,19 +10,19 @@ from apps.pet.validations import validate_image_format, validate_image_size, val
 
 class Pet(AbstractBaseModel):
     SEX_CHOICES = [
-        ('M', 'Male'), 
-        ('F', 'Female')
+        ('M', _('Male')), 
+        ('F', _('Female'))
     ]
     SIZE_CHOICES = [
-        ('XS', 'Extra Small'),
-        ('S', 'Small'),
-        ('M', 'Medium'),
-        ('L', 'Large'),
-        ('XL', 'Extra Large')
+        ('XS', _('Extra Small')),
+        ('S', _('Small')),
+        ('M', _('Medium')),
+        ('L', _('Large')),
+        ('XL', _('Extra Large'))
     ]
     TYPE_OF_PET_CHOICES = [
-        ('D', 'Dog'),
-        ('C', 'Cat')
+        ('D', _('Dog')),
+        ('C', _('Cat'))
     ]
     
     uuid = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
@@ -36,6 +37,10 @@ class Pet(AbstractBaseModel):
     
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = "Mascota"
+        verbose_name_plural = "Mascotas"
 
 class PetImage(AbstractBaseModel):
     uuid = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
@@ -64,6 +69,10 @@ class PetImage(AbstractBaseModel):
         # Si la imagen anterior es diferente a la imagen actual y existe, elimina la imagen anterior
         if old_image and old_image != self.image:
             old_image.storage.delete(old_image.name)
+    
+    class Meta:
+        verbose_name = "Imagen"
+        verbose_name_plural = "Imagenes"
 
 class AdoptionForm(AbstractBaseModel):
     uuid = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
@@ -83,11 +92,16 @@ class AdoptionForm(AbstractBaseModel):
     def __str__(self):
         return f'Formulario de: {self.name}'
     
+    class Meta:
+        verbose_name = "Formulario de adopción"
+        verbose_name_plural = "Formularios de adopción"
+        
+        
 class AdoptionRequest(AbstractBaseModel):
     STATUS_CHOICES = [
-        ('S', 'Sent'),
-        ('A', 'Approved'),
-        ('R', 'Rejected')
+        ('S', _('Sent')),
+        ('A', _('Approved')),
+        ('R', _('Rejected'))
     ]
     uuid = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     pet = models.ForeignKey(Pet, on_delete = models.CASCADE, related_name = 'pet_adoption_requests')
@@ -96,3 +110,7 @@ class AdoptionRequest(AbstractBaseModel):
     
     def __str__(self):
         return f'Solicitud de adopción para: {self.pet.name}'
+
+    class Meta:
+        verbose_name = "Solicitud de adopción"
+        verbose_name_plural = "Solcitudes de adopción"

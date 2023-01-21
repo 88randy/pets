@@ -1,10 +1,10 @@
 {% extends 'index.html' %}
 {% load static %}
 
-{% block title %}Create{% endblock title %}
+{% block title %}Añadir mascota{% endblock title %}
 
 {% block extraCSS %}
-
+    <link rel="stylesheet" href="{% static 'pet\create_pet.css' %}">
 {% endblock extraCSS %}
 
 {% block body %}
@@ -24,9 +24,60 @@
                         </ul>
                     </div>
                 {% endif %}
-                <form enctype="multipart/form-data" method="post">
+                <form enctype="multipart/form-data" method="post" id="create-pet">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form.created_by }}
+                    {{ form.modified_by }}
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label"><b>{{ form.name.label }}</b></label>
+                        {{ form.name }}
+                        <div id="nameHelp" class="form-text">Ingresa el nombre de la mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_breed" class="form-label"><b>{{ form.breed.label }}</b></label>
+                        {{ form.breed }}
+                        <div id="breedHelp" class="form-text">Ingresa la raza de la mascota si la sabes.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_age" class="form-label"><b>{{ form.age.label }}</b></label>
+                        {{ form.age }}
+                        <div id="ageHelp" class="form-text">Ingresa la edad de la mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_sex" class="form-label"><b>{{ form.sex.label }}</b></label>
+                        {{ form.sex }}
+                        <div id="sexHelp" class="form-text">Ingresa el género de la mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_size" class="form-label"><b>{{ form.size.label }}</b></label>
+                        {{ form.size }}
+                        <div id="sizeHelp" class="form-text">Selecciona el tamaño de la mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_type_of_pet" class="form-label"><b>{{ form.type_of_pet.label }}</b></label>
+                        {{ form.type_of_pet }}
+                        <div id="type_of_petHelp" class="form-text">Selecciona el tipo de mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_description" class="form-label"><b>{{ form.description.label }}</b></label>
+                        {{ form.description }}
+                        <div id="descriptionHelp" class="form-text">Agrega una breve descripción a cerca de la mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="upload__box">
+                            <div class="upload__btn-box">
+                                <label for="id_images" class="upload__btn">
+                                    {{ images_form.images.label }}
+                                    {{ images_form.images }}
+                                </label>
+                                <div id="imagesHelp" class="form-text">Sube hasta 5 imagenes con formato .png, .jpg y .jpeg con un peso menor a 2Mb</div>
+                            </div>
+                            <div class="upload__img-wrap"></div>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="submit">Crear</button>
+                    </div>
                 </form>
             </div>
             <div class="col-sm-6 align-self-end">
@@ -39,4 +90,5 @@
 {% endblock body %}
 
 {% block extraJS %}
-{% endblock extraJS %}
+    <script src="{% static 'pet\create_pet.js' %}"></script>
+    {% endblock extraJS %}

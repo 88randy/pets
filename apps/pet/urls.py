@@ -4,5 +4,5 @@ from apps.pet.views import CreatePetView
 
 
 urlpatterns = [
-    path('create', CreatePetView.as_view(), name = 'create_pet'),
+    path('crear', CreatePetView.as_view(), name = 'create_pet'),
 ]
