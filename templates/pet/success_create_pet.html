@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Mascota añadida{% endblock title %}
+
+{% block extraCSS %}
+{% endblock extraCSS %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 pt-5">
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Bien hecho!</h4>
+                    <p>La información de la mascota se creó correctamente.</p>
+                    <hr>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{% url 'index' %}" type="button" class="btn btn-secondary float-right">Regresar al inicio</a>
+                        <a href="{% url 'create_pet' %}" type="button" class="btn btn-success">Subir información de otra mascota</a>
+                    </div>
+                </div>
+                <div class="pets">
+                    <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\pastorAlemanAnimado04.png' %}" alt="Perro y gato">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block extraJS %}
+{% endblock extraJS %}

@@ -28,7 +28,9 @@ def generate_path_upload_images(instance, image_name):
     # Recupera el id de la imagen del objeto
     image_pk = instance.pk
     # Recupera el nombre base del archivo y la extención
-    _, extension = image_name.split('.')
+    base_name, extension = os.path.splitext(image_name)
+    # Elimina el punto (.) del nombre de la extensión
+    extension = extension[1:]
     # Genera el nuevo nombre y le asigna la extensión
     new_name = f'{image_pk}.{extension}'
     # Recupera el id de la mascota del objeto

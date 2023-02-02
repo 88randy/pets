@@ -4,12 +4,13 @@ jQuery(document).ready(function () {
     $('.alert .close').on('click', function(e) {
         $(this).parent().hide();
     });
+
 });
 
 function ImgUpload() {
     var imgWrap = "";
     var imgArray = [];
-    
+
     $(".upload__inputfile").each(function () {
         $(this).on("change", function (e) {
             imgWrap = $(this).closest(".upload__box").find(".upload__img-wrap");
@@ -23,6 +24,12 @@ function ImgUpload() {
                 // Valida que sea una imagen que no se encuentra en el array
                 for (var i = 0; i < imgArray.length; i++) {
                     if (f.name == imgArray[i].name){
+                        var imgFormatError = '<div class="alert alert-warning alert-dismissible fade show" role="alert">'
+                                +`<strong>Atención!</strong> La imagen seleccionada ya se encuentra en el listado`
+                                +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                                +'</div>';
+                        imgWrap.append(imgFormatError);
+                        $('#image-format-error').show();
                         return;
                     }
                 }
@@ -75,14 +82,13 @@ function ImgUpload() {
                     } else {
                         //imgArray = imgArray.concat(Array.prototype.slice.call(files));
                         imgArray.push(f);
-                        console.log(filesArr);
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             var html =
-                                "<div class='upload__img-box'><div style='background-image: url(" +
-                                e.target.result +
-                                ")' data-number='" +
-                                $(".upload__img-close").length +
+                                "<div class='upload__img-box'><div style='background-image: url(" 
+                                + e.target.result 
+                                + ")' data-number='" 
+                                + $(".upload__img-close").length +
                                 "' data-file='" +
                                 f.name +
                                 "' class='img-bg'><div class='upload__img-close'></div></div></div>";
@@ -90,6 +96,9 @@ function ImgUpload() {
                             iterator++;
                         };
                         reader.readAsDataURL(f);
+                        const dataTransfer = new DataTransfer();
+                        imgArray.forEach(file => dataTransfer.items.add(file));
+                        document.querySelector('input[name="images"]').files = dataTransfer.files;
                     }
                 }
             });
@@ -105,5 +114,8 @@ function ImgUpload() {
             }
         }
         $(this).parent().parent().remove();
+        const dataTransfer = new DataTransfer();
+        imgArray.forEach(file => dataTransfer.items.add(file));
+        document.querySelector('input[name="images"]').files = dataTransfer.files;
     });
 }
