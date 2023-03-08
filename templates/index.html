@@ -9,77 +9,816 @@
 
     <title>{% block title %} Inicio {% endblock title %}</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'index.css' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap"
+		rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+	<link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
     {% block extraCSS %}{% endblock extraCSS %}
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-md-auto gap-2" aria-labelledby="navbarDropdown">
-                    <li class="nav-item rounded">
-                        <a class="nav-link active" aria-current="page" href="#"><i
-                                class="bi bi-house-fill me-2"></i>Home</a>
-                    </li>
-                    <li class="nav-item rounded">
-                        <a class="nav-link" href="#"><i class="bi bi-people-fill me-2"></i>About</a>
-                    </li>
-                    <li class="nav-item rounded">
-                        <a class="nav-link" href="#"><i class="bi bi-telephone-fill me-2"></i>Contact</a>
-                    </li>
-                    <li class="nav-item dropdown rounded">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                class="bi bi-person-fill me-2"></i>Profile</a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Account</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+    <div class="wrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 d-flex align-items-center">
+					<p class="mb-0 phone pl-md-2">
+						<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a>
+						<a href="#"><span class="fa fa-paper-plane mr-1"></span> randy88allan@gmail.com</a>
+					</p>
+				</div>
+				<div class="col-md-6 d-flex justify-content-md-end">
+					<div class="social-media">
+						<p class="mb-0 d-flex">
+							<a href="#" class="d-flex align-items-center justify-content-center"><span
+									class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+							<a href="#" class="d-flex align-items-center justify-content-center"><span
+									class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+							<a href="#" class="d-flex align-items-center justify-content-center"><span
+									class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>Mascota en casa</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="fa fa-bars"></span> Menu
+			</button>
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item {% if request.path == '/' %}active{% endif %}"><a href="{% url 'index' %}" class="nav-link">Inicio</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">Información</a></li>
+					<!-- <li class="nav-item"><a href="#" class="nav-link">Servicios</a></li> -->
+					<li class="nav-item"><a href="#" class="nav-link">Galeria</a></li>
+					{% comment %} <li class="nav-item"><a href="#" class="nav-link">Blog</a></li> {% endcomment %}
+					<li class="nav-item"><a href="#" class="nav-link">Contacto</a></li>
+                    <li class="nav-item {% if request.path == '/usuario/signup' %}active{% endif %}"><a href="{% url 'signup' %}" class="nav-link">Registrate</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">inicia sesión</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+    <!-- END nav -->
+    {% block body %}
+        <div class="hero-wrap js-fullheight" data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
+                    data-scrollax-parent="true">
+                    <div class="col-md-11 ftco-animate text-center">
+                        <h1 class="mb-4">Buscando hogares cálidos para seres extraordinarios. </h1>
+                        <p><a href="#" class="btn btn-primary mr-md-4 py-3 px-4">Leer más <span
+                                    class="ion-ios-arrow-forward"></span></a></p>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-    <div class="">
-        <div class="container pt-auto pb-5">
-            {% block body %}
-                <h1>Hola</h1>
-            {% endblock body %}
-        </div>
-    </div>
-    <div class="bg-dark text-white">
-        <p class="text-center p-4 m-0">Footer Content</p>
-    </div>
-
-
-    <!-- Incluye la librería de jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-
-    <!-- Incluye la librería JavaScript de Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
+        <section class="ftco-section bg-light ftco-no-pt ftco-intro">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
+                        <div class="d-block services active text-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-blind"></span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="heading">Pasea con tu mascota</h3>
+                                <p>¡Sal a pasear con tu mascota! Es importante que hagan ejercicio y tengan estimulación mental, y sacarlos a caminar es una forma fácil y efectiva de lograrlo. Además, pasar tiempo al aire libre con tu mascota puede mejorar la salud y la felicidad tanto de tu perro como la tuya.</p>
+                                <p>¡Así que coge la correa y sal a dar un paseo!</p>
+                                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
+                        <div class="d-block services text-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-dog-eating"></span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="heading">Alimenta sanamente a tu mascota</h3>
+                                <p>Alimenta bien a tu mascota para mantenerla sana y feliz. Proporciónale alimentos de calidad y específicos para su especie y edad, dale la cantidad adecuada para su tamaño y nivel de actividad. Una buena nutrición es clave para prevenir enfermedades y prolongar su vida.</p>
+                                <p>¡Dale a tu compañero la nutrición que merece!</p>
+                                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
+                        <div class="d-block services text-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-grooming"></span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="heading">Cuidados esenciales</h3>
+                                <p>Vacunar y bañar a tu mascota son medidas importantes para mantener su salud y bienestar. Las vacunas ayudan a prevenir enfermedades graves y potencialmente mortales, mientras que los baños regulares ayudan a mantener la higiene y a prevenir problemas de piel y pelaje.</p>
+                                <p>¡Mantén a tu amigo peludo feliz y saludable con la atención y cuidados que necesita!</p>
+                                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     
-    <!-- Incluye la librería JavaScript de Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-
+        <section class="ftco-section ftco-no-pt ftco-no-pb">
+            <div class="container">
+                <div class="row d-flex no-gutters">
+                    <div class="col-md-5 d-flex">
+                        <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0"
+                            style="background-image:url({% static 'images/about-1.png' %}); ">
+                        </div>
+                    </div>
+                    <div class="col-md-7 pl-md-5 py-md-5">
+                        <div class="heading-section pt-md-5">
+                            <h2 class="mb-4">¡Cuida de tu mascota!</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 services-2 w-100 d-flex">
+                                <div class="icon d-flex align-items-center justify-content-center" style="color:white;">
+                                    <svg style="width:50%; height:50%" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet-fill" viewBox="0 0 16 16">
+                                        <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6ZM6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13Z"/>
+                                    </svg>
+                                </div>
+                                <div class="text pl-3">
+                                    <h4>Higiene de mascotas</h4>
+                                    <p>Baña a tu mascota regularmente para mantener su pelaje y piel saludables y evitar malos olores.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 services-2 w-100 d-flex">
+                                <div class="icon d-flex align-items-center justify-content-center" style="color:white;">
+                                    <svg style="width:50%; height:50%" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01L8 2.748ZM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Z"/>
+                                        <path d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162l-1.874-4.686Z"/>
+                                    </svg>
+                                </div>
+                                <div class="text pl-3">
+                                    <h4>Ejercicio diario</h4>
+                                    <p>Proporciona a tu mascota suficiente actividad física para mantenerla en buena forma y mejorar su salud general.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 services-2 w-100 d-flex">
+                                <div class="icon d-flex align-items-center justify-content-center"><span
+                                        class="flaticon-dog-eating"></span></div>
+                                <div class="text pl-3">
+                                    <h4>Alimentación adecuada</h4>
+                                    <p>Dale a tu mascota una dieta equilibrada y adecuada a sus necesidades nutricionales para mantener su salud y energía.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 services-2 w-100 d-flex">
+                                <div class="icon d-flex align-items-center justify-content-center"><span
+                                        class="flaticon-veterinarian"></span></div>
+                                <div class="text pl-3">
+                                    <h4>Visitas al veterinario</h4>
+                                    <p>Lleva a tu mascota al veterinario regularmente para chequeos de salud y para detectar cualquier problema a tiempo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     
+        {% comment %} <section class="ftco-counter" id="section-counter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <strong class="number" data-number="50">0</strong>
+                            </div>
+                            <div class="text">
+                                <span>Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <strong class="number" data-number="8500">0</strong>
+                            </div>
+                            <div class="text">
+                                <span>Professionals</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <strong class="number" data-number="20">0</strong>
+                            </div>
+                            <div class="text">
+                                <span>Products</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <strong class="number" data-number="50">0</strong>
+                            </div>
+                            <div class="text">
+                                <span>Pets Hosted</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> {% endcomment %}
+    
+        <section class="ftco-section bg-light ftco-faqs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 order-md-last">
+                        <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0"
+                            style="background-image:url({% static 'images/about.jpg' %});">
+                            <a href="https://vimeo.com/778784505"
+                                class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
+                                <span class="fa fa-play"></span>
+                            </a>
+                        </div>
+                        <div class="d-flex mt-3">
+                            <div class="img img-2 mr-md-2" style="background-image:url({% static 'images/about-2.jpg' %});"></div>
+                            <div class="img img-2 ml-md-2" style="background-image:url({% static 'images/about-3.jpg' %});"></div>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-6">
+                        <div class="heading-section mb-5 mt-5 mt-lg-0">
+                            <h2 class="mb-3">Preguntas frecuentes</h2>
+                            <p>Preguntas sobre los cuidados de tu mascota.</p>
+                        </div>
+                        <div id="accordion" class="myaccordion w-100" aria-multiselectable="true">
+                            <div class="card">
+                                <div class="card-header p-0" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button href="#collapseOne"
+                                            class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+                                            data-parent="#accordion" data-toggle="collapse" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            <p class="mb-0">¿Cómo puedo asegurarme de que mi mascota esté bien hidratada?</p>
+                                            <i class="fa" aria-hidden="true"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div class="collapse show" id="collapseOne" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="card-body py-3 px-0">
+                                        <ul>
+                                            <li>Lo mejor es proporcionarle agua fresca y limpia en todo momento. Los perros necesitan beber al menos 30-50 ml de agua por cada kilogramo de peso corporal al día, mientras que los gatos necesitan alrededor de 50 ml por kilogramo de peso corporal al día.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="card">
+                                <div class="card-header p-0" id="headingTwo" role="tab">
+                                    <h2 class="mb-0">
+                                        <button href="#collapseTwo"
+                                            class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+                                            data-parent="#accordion" data-toggle="collapse" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                            <p class="mb-0">¿Qué alimentos deben evitarse al alimentar a mi mascota?</p>
+                                            <i class="fa" aria-hidden="true"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div class="collapse" id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="card-body py-3 px-0">
+                                        <ul>
+                                            <li>Debes evitar darle a tu mascota alimentos como chocolate, uvas, cebolla, ajo, aguacate, frutas con huesos y alimentos grasosos o salados. Estos pueden ser tóxicos o difíciles de digerir para los animales.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="card">
+                                <div class="card-header p-0" id="headingThree" role="tab">
+                                    <h2 class="mb-0">
+                                        <button href="#collapseThree"
+                                            class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+                                            data-parent="#accordion" data-toggle="collapse" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                            <p class="mb-0">¿Cómo puedo evitar que mi mascota tenga pulgas y garrapatas?</p>
+                                            <i class="fa" aria-hidden="true"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div class="collapse" id="collapseThree" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="card-body py-3 px-0">
+                                        <ul>
+                                            <li>Puedes utilizar productos preventivos como collares antipulgas y antiparasitarios tópicos. También debes mantener limpia la cama y el área donde duerme tu mascota, así como mantener limpio el patio y las áreas exteriores donde juega.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="card">
+                                <div class="card-header p-0" id="headingFour" role="tab">
+                                    <h2 class="mb-0">
+                                        <button href="#collapseFour"
+                                            class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+                                            data-parent="#accordion" data-toggle="collapse" aria-expanded="false"
+                                            aria-controls="collapseFour">
+                                            <p class="mb-0">¿Cuándo debo llevar a mi mascota al veterinario para un chequeo regular?</p>
+                                            <i class="fa" aria-hidden="true"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div class="collapse" id="collapseFour" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="card-body py-3 px-0">
+                                        <ul>
+                                            <li>Debes llevar a tu mascota al veterinario al menos una vez al año para un chequeo de rutina. Los animales mayores o aquellos con problemas de salud deben ser revisados con más frecuencia, según las recomendaciones del veterinario. Además, debes llevar a tu mascota al veterinario si presenta síntomas de enfermedad o cambios en su comportamiento o apariencia física.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="ftco-section testimony-section" style="background-image: url('{% static 'images/bg_2.jpg' %}');">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row justify-content-center pb-5 mb-3">
+                    <div class="col-md-7 heading-section text-center ftco-animate">
+                        <h2>Testimonios</h2>
+                    </div>
+                </div>
+                <div class="row ftco-animate">
+                    <div class="col-md-12">
+                        <div class="carousel-testimony owl-carousel ftco-owl">
+                            <div class="item">
+                                <div class="testimony-wrap py-4">
+                                    <div class="icon d-flex align-items-center justify-content-center"><span
+                                            class="fa fa-quote-left"></span></div>
+                                    <div class="text">
+                                        <p class="mb-4">Adopté a mi perro en esta app de adopción y ha sido la mejor decisión que he tomado. Es un compañero fiel y amoroso, siempre está dispuesto a jugar y a hacerme compañía. Lo recomiendo totalmente a quienes quieran adoptar una mascota".</p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-img" style="background-image: url({% static 'images/icon_human_pet.png' %})"></div>
+                                            <div class="pl-3">
+                                                <p class="name">Adriana</p>
+                                                <span class="position">Adoptante</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="testimony-wrap py-4">
+                                    <div class="icon d-flex align-items-center justify-content-center"><span
+                                            class="fa fa-quote-left"></span></div>
+                                    <div class="text">
+                                        <p class="mb-4">Adoptamos a nuestro gato a través de esta app y no podríamos estar más felices. Es un miembro más de nuestra familia y nos encanta su personalidad juguetona y cariñosa. ¡Gracias por ayudarnos a encontrar a nuestro amigo peludo!.</p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-img" style="background-image: url({% static 'images/icon_human_pet.png' %})"></div>
+                                            <div class="pl-3">
+                                                <p class="name">Paco</p>
+                                                <span class="position">Adoptante</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="testimony-wrap py-4">
+                                    <div class="icon d-flex align-items-center justify-content-center"><span
+                                            class="fa fa-quote-left"></span></div>
+                                    <div class="text">
+                                        <p class="mb-4">Estaba buscando un perro para adoptar y aquí encontré a mi mejor amigo. Es un cachorro muy activo y divertido, y me encanta salir a correr y jugar con él. ¡No puedo imaginar mi vida sin él!.</p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-img" style="background-image: url({% static 'images/icon_human_pet.png' %})"></div>
+                                            <div class="pl-3">
+                                                <p class="name">María</p>
+                                                <span class="position">Adoptante</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="testimony-wrap py-4">
+                                    <div class="icon d-flex align-items-center justify-content-center"><span
+                                            class="fa fa-quote-left"></span></div>
+                                    <div class="text">
+                                        <p class="mb-4">Después de años de tener gatos, decidí adoptar un perro. Ahora tengo a un perro cariñoso y protector que me hace sentir segura en todo momento. ¡Gracias por ayudarme a encontrar a mi nuevo mejor amigo!.</p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-img" style="background-image: url({% static 'images/icon_human_pet.png' %})"></div>
+                                            <div class="pl-3">
+                                                <p class="name">Juan</p>
+                                                <span class="position">Adoptante</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="testimony-wrap py-4">
+                                    <div class="icon d-flex align-items-center justify-content-center"><span
+                                            class="fa fa-quote-left"></span></div>
+                                    <div class="text">
+                                        <p class="mb-4">Adoptar un gato a través de esta app fue muy fácil y rápido. Desde el primer momento supe que era el gato perfecto para mí. Es muy tranquilo y cariñoso, y estoy agradecido de haberlo encontrado en esta plataforma de adopción.</p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-img" style="background-image: url({% static 'images/icon_human_pet.png' %})"></div>
+                                            <div class="pl-3">
+                                                <p class="name">Carmen</p>
+                                                <span class="position">Adoptante</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        {% comment %} <section class="ftco-section bg-light">
+            <div class="container">
+                <div class="row justify-content-center pb-5 mb-3">
+                    <div class="col-md-7 heading-section text-center ftco-animate">
+                        <h2>Affordable Packages</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 ftco-animate">
+                        <div class="block-7">
+                            <div class="img" style="background-image: url({% static 'images/pricing-1.jpg' %});"></div>
+                            <div class="text-center p-4">
+                                <span class="excerpt d-block">Personal</span>
+                                <span class="price"><sup>$</sup> <span class="number">49</span> <sub>/mos</sub></span>
+    
+                                <ul class="pricing-text mb-5">
+                                    <li><span class="fa fa-check mr-2"></span>5 Dog Walk</li>
+                                    <li><span class="fa fa-check mr-2"></span>3 Vet Visit</li>
+                                    <li><span class="fa fa-check mr-2"></span>3 Pet Spa</li>
+                                    <li><span class="fa fa-check mr-2"></span>Free Supports</li>
+                                </ul>
+    
+                                <a href="#" class="btn btn-primary d-block px-2 py-3">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ftco-animate">
+                        <div class="block-7">
+                            <div class="img" style="background-image: url({% static 'images/pricing-2.jpg' %});"></div>
+                            <div class="text-center p-4">
+                                <span class="excerpt d-block">Business</span>
+                                <span class="price"><sup>$</sup> <span class="number">79</span> <sub>/mos</sub></span>
+    
+                                <ul class="pricing-text mb-5">
+                                    <li><span class="fa fa-check mr-2"></span>5 Dog Walk</li>
+                                    <li><span class="fa fa-check mr-2"></span>3 Vet Visit</li>
+                                    <li><span class="fa fa-check mr-2"></span>3 Pet Spa</li>
+                                    <li><span class="fa fa-check mr-2"></span>Free Supports</li>
+                                </ul>
+    
+                                <a href="#" class="btn btn-primary d-block px-2 py-3">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ftco-animate">
+                        <div class="block-7">
+                            <div class="img" style="background-image: url({% static 'images/pricing-3.jpg' %});"></div>
+                            <div class="text-center p-4">
+                                <span class="excerpt d-block">Ultimate</span>
+                                <span class="price"><sup>$</sup> <span class="number">109</span> <sub>/mos</sub></span>
+    
+                                <ul class="pricing-text mb-5">
+                                    <li><span class="fa fa-check mr-2"></span>5 Dog Walk</li>
+                                    <li><span class="fa fa-check mr-2"></span>3 Vet Visit</li>
+                                    <li><span class="fa fa-check mr-2"></span>3 Pet Spa</li>
+                                    <li><span class="fa fa-check mr-2"></span>Free Supports</li>
+                                </ul>
+    
+                                <a href="#" class="btn btn-primary d-block px-2 py-3">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> {% endcomment %}
+    
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center pb-5 mb-3">
+                    <div class="col-md-7 heading-section text-center ftco-animate">
+                        <h2>Galería de mascotas</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 ftco-animate">
+                        <div class="work mb-4 img d-flex align-items-end"
+                            style="background-image: url({% static 'images/gallery-1.jpg' %});">
+                            <a href="{% static 'images/gallery-1.jpg' %}"
+                                class="icon image-popup d-flex justify-content-center align-items-center">
+                                <span class="fa fa-expand"></span>
+                            </a>
+                            <div class="desc w-100 px-4">
+                                <div class="text w-100 mb-3">
+                                    <span>Perro</span>
+                                    <h2><a href="work-single.html">Rocky</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ftco-animate">
+                        <div class="work mb-4 img d-flex align-items-end"
+                            style="background-image: url({% static 'images/gallery-2.jpg' %});">
+                            <a href="{% static 'images/gallery-2.jpg' %}"
+                                class="icon image-popup d-flex justify-content-center align-items-center">
+                                <span class="fa fa-expand"></span>
+                            </a>
+                            <div class="desc w-100 px-4">
+                                <div class="text w-100 mb-3">
+                                    <span>Gato</span>
+                                    <h2><a href="work-single.html">Oliver</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ftco-animate">
+                        <div class="work mb-4 img d-flex align-items-end"
+                            style="background-image: url({% static 'images/gallery-3.jpg' %});">
+                            <a href="{% static 'images/gallery-3.jpg' %}"
+                                class="icon image-popup d-flex justify-content-center align-items-center">
+                                <span class="fa fa-expand"></span>
+                            </a>
+                            <div class="desc w-100 px-4">
+                                <div class="text w-100 mb-3">
+                                    <span>Perro</span>
+                                    <h2><a href="work-single.html">Zeus</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-4 ftco-animate">
+                        <div class="work mb-4 img d-flex align-items-end"
+                            style="background-image: url({% static 'images/gallery-4.jpg' %});">
+                            <a href="{% static 'images/gallery-4.jpg' %}"
+                                class="icon image-popup d-flex justify-content-center align-items-center">
+                                <span class="fa fa-expand"></span>
+                            </a>
+                            <div class="desc w-100 px-4">
+                                <div class="text w-100 mb-3">
+                                    <span>Gato</span>
+                                    <h2><a href="work-single.html">Cleo</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ftco-animate">
+                        <div class="work mb-4 img d-flex align-items-end"
+                            style="background-image: url({% static 'images/gallery-5.jpg' %});">
+                            <a href="{% static 'images/gallery-5.jpg' %}"
+                                class="icon image-popup d-flex justify-content-center align-items-center">
+                                <span class="fa fa-expand"></span>
+                            </a>
+                            <div class="desc w-100 px-4">
+                                <div class="text w-100 mb-3">
+                                    <span>Perro</span>
+                                    <h2><a href="work-single.html">Toby</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ftco-animate">
+                        <div class="work mb-4 img d-flex align-items-end"
+                            style="background-image: url({% static 'images/gallery-6.jpg' %});">
+                            <a href="{% static 'images/gallery-6.jpg' %}"
+                                class="icon image-popup d-flex justify-content-center align-items-center">
+                                <span class="fa fa-expand"></span>
+                            </a>
+                            <div class="desc w-100 px-4">
+                                <div class="text w-100 mb-3">
+                                    <span>Gato</span>
+                                    <h2><a href="work-single.html">Simba</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        {% comment %} <section class="ftco-section bg-light">
+            <div class="container">
+                <div class="row justify-content-center pb-5 mb-3">
+                    <div class="col-md-7 heading-section text-center ftco-animate">
+                        <h2>Latest news from our blog</h2>
+                    </div>
+                </div>
+                <div class="row d-flex">
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="blog-entry align-self-stretch">
+                            <a href="blog-single.html" class="block-20 rounded"
+                                style="background-image: url('{% static 'images/image_1.jpg' %}');">
+                            </a>
+                            <div class="text p-4">
+                                <div class="meta mb-2">
+                                    <div><a href="#">April 07, 2020</a></div>
+                                    <div><a href="#">Admin</a></div>
+                                    <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                                </div>
+                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
+                                        blind texts</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="blog-entry align-self-stretch">
+                            <a href="blog-single.html" class="block-20 rounded"
+                                style="background-image: url('{% static 'images/image_2.jpg' %}');">
+                            </a>
+                            <div class="text p-4">
+                                <div class="meta mb-2">
+                                    <div><a href="#">April 07, 2020</a></div>
+                                    <div><a href="#">Admin</a></div>
+                                    <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                                </div>
+                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
+                                        blind texts</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="blog-entry align-self-stretch">
+                            <a href="blog-single.html" class="block-20 rounded"
+                                style="background-image: url('{% static 'images/image_3.jpg' %}');">
+                            </a>
+                            <div class="text p-4">
+                                <div class="meta mb-2">
+                                    <div><a href="#">April 07, 2020</a></div>
+                                    <div><a href="#">Admin</a></div>
+                                    <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                                </div>
+                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
+                                        blind texts</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> {% endcomment %}
+    
+        <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img"
+            style="background-image: url({% static 'images/bg_3.jpg' %});">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row d-md-flex justify-content-end">
+                    <div class="col-md-12 col-lg-6 half p-3 py-5 pl-lg-5 ftco-animate">
+                        <h2 class="mb-4">Contactanos</h2>
+                        <form action="#" class="appointment">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Tu Nombre">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Tu email">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea name="" id="" cols="30" rows="7" class="form-control"
+                                            placeholder="Mensaje"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="submit" value="Enviar mensaje" class="btn btn-primary py-3 px-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock body %}
+
+    <footer class="footer">
+		{% comment %} <div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+					<h2 class="footer-heading">Petsitting</h2>
+					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+					<ul class="ftco-footer-social p-0">
+						<li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top"
+								title="Twitter"><span class="fa fa-twitter"></span></a></li>
+						<li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top"
+								title="Facebook"><span class="fa fa-facebook"></span></a></li>
+						<li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top"
+								title="Instagram"><span class="fa fa-instagram"></span></a></li>
+					</ul>
+				</div>
+				<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+					<h2 class="footer-heading">Latest News</h2>
+					<div class="block-21 mb-4 d-flex">
+						<a class="img mr-4 rounded" style="background-image: url({% static 'images/image_1.jpg' %});"></a>
+						<div class="text">
+							<h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+							<div class="meta">
+								<div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
+								<div><a href="#"><span class="icon-person"></span> Admin</a></div>
+								<div><a href="#"><span class="icon-chat"></span> 19</a></div>
+							</div>
+						</div>
+					</div>
+					<div class="block-21 mb-4 d-flex">
+						<a class="img mr-4 rounded" style="background-image: url({% static 'images/image_2.jpg' %});"></a>
+						<div class="text">
+							<h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+							<div class="meta">
+								<div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
+								<div><a href="#"><span class="icon-person"></span> Admin</a></div>
+								<div><a href="#"><span class="icon-chat"></span> 19</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+					<h2 class="footer-heading">Quick Links</h2>
+					<ul class="list-unstyled">
+						<li><a href="#" class="py-2 d-block">Home</a></li>
+						<li><a href="#" class="py-2 d-block">About</a></li>
+						<li><a href="#" class="py-2 d-block">Services</a></li>
+						<li><a href="#" class="py-2 d-block">Works</a></li>
+						<li><a href="#" class="py-2 d-block">Blog</a></li>
+						<li><a href="#" class="py-2 d-block">Contact</a></li>
+					</ul>
+				</div>
+				<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+					<h2 class="footer-heading">Have a Questions?</h2>
+					<div class="block-23 mb-3">
+						<ul>
+							<li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain View, San
+									Francisco, California, USA</span></li>
+							<li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929
+										210</span></a></li>
+							<li><a href="#"><span class="icon fa fa-paper-plane"></span><span
+										class="text">info@yourdomain.com</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div> {% endcomment %}
+			<div class="row mt-5">
+				<div class="col-md-12 text-center">
+
+					<p class="copyright">
+						Copyright &copy;
+						<script>document.write(new Date().getFullYear());</script> All rights reserved | Randy Allan
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/scrollax.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
     {% block extraJS %}
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script src="{% static 'js/google-map.js' %}"></script>
         <script type="text/javascript" src="{% static 'index.js' %}"></script>
     {% endblock extraJS %}
 </body>

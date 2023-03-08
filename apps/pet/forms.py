@@ -26,15 +26,15 @@ class PetForm(forms.ModelForm):
         self.fields['age'].widget.attrs['aria-describedby'] = 'ageHelp'
         
         self.fields['sex'].label = 'Género'
-        self.fields['sex'].widget.attrs['class'] = 'form-select'
+        self.fields['sex'].widget.attrs['class'] = 'custom-select'
         self.fields['sex'].widget.attrs['aria-describedby'] = 'sexHelp'
         
         self.fields['size'].label = 'Tamaño'
-        self.fields['size'].widget.attrs['class'] = 'form-select'
+        self.fields['size'].widget.attrs['class'] = 'custom-select'
         self.fields['size'].widget.attrs['aria-describedby'] = 'sizeHelp'
         
         self.fields['type_of_pet'].label = 'Tipo de mascota'
-        self.fields['type_of_pet'].widget.attrs['class'] = 'form-select'
+        self.fields['type_of_pet'].widget.attrs['class'] = 'custom-select'
         self.fields['type_of_pet'].widget.attrs['aria-describedby'] = 'type_of_petHelp'
         
         self.fields['description'].label = 'Descripción'

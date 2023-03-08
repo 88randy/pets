@@ -10,19 +10,19 @@ from apps.pet.validations import validate_image_format, validate_image_size, val
 
 class Pet(AbstractBaseModel):
     SEX_CHOICES = [
-        ('M', _('Male')), 
-        ('F', _('Female'))
+        ('M', _('Macho')), 
+        ('F', _('Hembra'))
     ]
     SIZE_CHOICES = [
-        ('XS', _('Extra Small')),
-        ('S', _('Small')),
-        ('M', _('Medium')),
-        ('L', _('Large')),
-        ('XL', _('Extra Large'))
+        ('XS', _('Extra Pequeño')),
+        ('S', _('Pequeño')),
+        ('M', _('Mediano')),
+        ('L', _('Grande')),
+        ('XL', _('Extra Grande'))
     ]
     TYPE_OF_PET_CHOICES = [
-        ('D', _('Dog')),
-        ('C', _('Cat'))
+        ('D', _('Perro')),
+        ('C', _('Gato'))
     ]
     
     uuid = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
@@ -99,9 +99,9 @@ class AdoptionForm(AbstractBaseModel):
         
 class AdoptionRequest(AbstractBaseModel):
     STATUS_CHOICES = [
-        ('S', _('Sent')),
-        ('A', _('Approved')),
-        ('R', _('Rejected'))
+        ('S', _('Enviado')),
+        ('A', _('Aprobado')),
+        ('R', _('Rechazado'))
     ]
     uuid = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     pet = models.ForeignKey(Pet, on_delete = models.CASCADE, related_name = 'pet_adoption_requests')

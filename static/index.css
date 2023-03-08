@@ -15,3 +15,6 @@ body {
     background-color: rgba(180, 190, 203, 0.4);
 }
 
+.hero-wrap{
+    background-image: url('images/bg_1.jpg');
+}

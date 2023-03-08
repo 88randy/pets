@@ -1,27 +1,27 @@
 $(document).ready(function () {
 
-    $("#show_hide_password1 a").on('click', function(event) {
+    $("#show_hide_password1 button").on('click', function(event) {
         event.preventDefault();
         if($('#show_hide_password1 input').attr("type") == "text"){
             $('#show_hide_password1 input').attr('type', 'password');
-            $('#show_hide_password1 i').addClass( "bi bi-eye-slash" );
-            $('#show_hide_password1 i').removeClass( "bi bi-eye" );
+            $('#show_hide_password1 i').removeClass( "fa fa-sharp fa-solid fa-eye" );
+            $('#show_hide_password1 i').addClass( "fa fa-solid fa-eye-slash" );
         }else if($('#show_hide_password1 input').attr("type") == "password"){
             $('#show_hide_password1 input').attr('type', 'text');
-            $('#show_hide_password1 i').removeClass( "bi bi-eye-slash" );
-            $('#show_hide_password1 i').addClass( "bi bi-eye" );
+            $('#show_hide_password1 i').removeClass( "fa fa-solid fa-eye-slash" );
+            $('#show_hide_password1 i').addClass( "fa fa-sharp fa-solid fa-eye" );
         }
     });
-    $("#show_hide_password2 a").on('click', function(event) {
+    $("#show_hide_password2 button").on('click', function(event) {
         event.preventDefault();
         if($('#show_hide_password2 input').attr("type") == "text"){
             $('#show_hide_password2 input').attr('type', 'password');
-            $('#show_hide_password2 i').addClass( "bi bi-eye-slash" );
-            $('#show_hide_password2 i').removeClass( "bi bi-eye" );
+            $('#show_hide_password2 i').removeClass( "fa fa-sharp fa-solid fa-eye" );
+            $('#show_hide_password2 i').addClass( "fa fa-solid fa-eye-slash" );
         }else if($('#show_hide_password2 input').attr("type") == "password"){
             $('#show_hide_password2 input').attr('type', 'text');
-            $('#show_hide_password2 i').removeClass( "bi bi-eye-slash" );
-            $('#show_hide_password2 i').addClass( "bi bi-eye" );
+            $('#show_hide_password2 i').removeClass( "fa fa-solid fa-eye-slash" );
+            $('#show_hide_password2 i').addClass( "fa fa-sharp fa-solid fa-eye" );
         }
     });
 });

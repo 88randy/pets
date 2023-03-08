@@ -8,113 +8,98 @@
 {% endblock extraCSS %}
 
 {% block body %}
+<section class="ftco-section bg-light ftco-no-pt ftco-intro">
     <div class="container">
-        {% if form.is_valid %}
-            <div class="col-md-12">
-                <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">Bien hecho!</h4>
-                    <p>La información de la mascota se creó correctamente.</p>
-                    <hr>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="{% url 'index' %}" type="button" class="btn btn-secondary float-right">Regresar al inicio</a>
-                        <a href="{% url 'create_pet' %}" type="button" class="btn btn-success">Subir información de otra mascota</a>
+        <div class="row pt-3">
+            <h1><b>Sube la información de una mascota!!!</b></h1>
+            <hr class="border border-dark border-2 opacity-50">
+            <div class="col-sm-6 text-center">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
                     </div>
-                </div>
-                <div class="pets">
-                    <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\pastorAlemanAnimado04.png' %}" alt="Perro y gato">
-                </div>
-            </div>
-        {% else %}
-            <div class="row pt-3">
-                <h1><b>Sube la información de una mascota!!!</b></h1>
-                <hr class="border border-dark border-2 opacity-50">
-                <div class="col-sm-6 text-center">
-                    {% if form.errors %}
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                {% for field in form %}
-                                    {% for error in field.errors %}
-                                        <li>{{ error }}</li>
-                                    {% endfor %}
+                {% endif %}
+                {% if images_form.errors %}
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            {% for field in images_form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
                                 {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-                    {% if images_form.errors %}
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                {% for field in images_form %}
-                                    {% for error in field.errors %}
-                                        <li>{{ error }}</li>
-                                    {% endfor %}
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-                    <form enctype="multipart/form-data" method="post" id="create-pet">
-                        {% csrf_token %}
-                        {{ form.created_by }}
-                        {{ form.modified_by }}
-                        <div class="mb-3">
-                            <label for="id_name" class="form-label"><b>{{ form.name.label }}</b></label>
-                            {{ form.name }}
-                            <div id="nameHelp" class="form-text">Ingresa el nombre de la mascota.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_breed" class="form-label"><b>{{ form.breed.label }}</b></label>
-                            {{ form.breed }}
-                            <div id="breedHelp" class="form-text">Ingresa la raza de la mascota si la sabes.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_age" class="form-label"><b>{{ form.age.label }}</b></label>
-                            {{ form.age }}
-                            <div id="ageHelp" class="form-text">Ingresa la edad de la mascota.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_sex" class="form-label"><b>{{ form.sex.label }}</b></label>
-                            {{ form.sex }}
-                            <div id="sexHelp" class="form-text">Ingresa el género de la mascota.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_size" class="form-label"><b>{{ form.size.label }}</b></label>
-                            {{ form.size }}
-                            <div id="sizeHelp" class="form-text">Selecciona el tamaño de la mascota.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_type_of_pet" class="form-label"><b>{{ form.type_of_pet.label }}</b></label>
-                            {{ form.type_of_pet }}
-                            <div id="type_of_petHelp" class="form-text">Selecciona el tipo de mascota.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_description" class="form-label"><b>{{ form.description.label }}</b></label>
-                            {{ form.description }}
-                            <div id="descriptionHelp" class="form-text">Agrega una breve descripción a cerca de la mascota.</div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="upload__box">
-                                <div class="upload__btn-box">
-                                    <label for="id_images" class="upload__btn">
-                                        {{ images_form.images.label }}
-                                        {{ images_form.images }}
-                                    </label>
-                                    <div id="imagesHelp" class="form-text">Sube hasta 5 imagenes con formato .png, .jpg y .jpeg con un peso menor a 2Mb</div>
-                                </div>
-                                <div class="upload__img-wrap"></div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <form enctype="multipart/form-data" method="post" id="create-pet">
+                    {% csrf_token %}
+                    {{ form.created_by }}
+                    {{ form.modified_by }}
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label"><b>{{ form.name.label }}</b></label>
+                        {{ form.name }}
+                        <div id="nameHelp" class="form-text">Ingresa el nombre de la mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_breed" class="form-label"><b>{{ form.breed.label }}</b></label>
+                        {{ form.breed }}
+                        <div id="breedHelp" class="form-text">Ingresa la raza de la mascota si la sabes.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_age" class="form-label"><b>{{ form.age.label }}</b></label>
+                        {{ form.age }}
+                        <div id="ageHelp" class="form-text">Ingresa la edad de la mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_sex" class="form-label"><b>{{ form.sex.label }}</b></label>
+                        {{ form.sex }}
+                        <div id="sexHelp" class="form-text">Ingresa el género de la mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_size" class="form-label"><b>{{ form.size.label }}</b></label>
+                        {{ form.size }}
+                        <div id="sizeHelp" class="form-text">Selecciona el tamaño de la mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_type_of_pet" class="form-label"><b>{{ form.type_of_pet.label }}</b></label>
+                        {{ form.type_of_pet }}
+                        <div id="type_of_petHelp" class="form-text">Selecciona el tipo de mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_description" class="form-label"><b>{{ form.description.label }}</b></label>
+                        {{ form.description }}
+                        <div id="descriptionHelp" class="form-text">Agrega una breve descripción a cerca de la mascota.</div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="upload__box">
+                            <div class="upload__btn-box">
+                                <label for="id_images" class="upload__btn">
+                                    {{ images_form.images.label }}
+                                    {{ images_form.images }}
+                                </label>
+                                <div id="imagesHelp" class="form-text">Sube hasta 5 imagenes con formato .png, .jpg y .jpeg con un peso menor a 2Mb</div>
                             </div>
+                            <div class="upload__img-wrap"></div>
                         </div>
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="submit">Crear</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-sm-6 align-self-end">
-                    <div class="pets">
-                        <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\pastorAlemanAnimado03.jpg' %}" alt="Perro y gato">
                     </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary btn-block" type="submit">Crear</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6 align-self-end">
+                <div class="pets">
+                    <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\pastorAlemanAnimado03.jpg' %}" alt="Perro y gato">
                 </div>
             </div>
-        {% endif %}
+        </div>
     </div>
+</section>
 {% endblock body %}
 
 {% block extraJS %}

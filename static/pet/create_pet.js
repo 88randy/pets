@@ -26,7 +26,7 @@ function ImgUpload() {
                     if (f.name == imgArray[i].name){
                         var imgFormatError = '<div class="alert alert-warning alert-dismissible fade show" role="alert">'
                                 +`<strong>Atención!</strong> La imagen seleccionada ya se encuentra en el listado`
-                                +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                                +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
                                 +'</div>';
                         imgWrap.append(imgFormatError);
                         $('#image-format-error').show();
@@ -41,7 +41,7 @@ function ImgUpload() {
                                         +'<strong>Error!</strong> El formato de la imagen: ' 
                                         + '<b>' + f.name + '</b>'
                                         +' no es válido. Solo se permiten formatos jpg, jpeg y png.'
-                                        +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                                        +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
                                         +'</div>';
                     imgWrap.append(imgFormatError);
                     $('#image-format-error').show();
@@ -54,7 +54,7 @@ function ImgUpload() {
                         +'<strong>Error!</strong> El tamaño de la imagen: ' 
                         + '<b>' + f.name + '</b>'
                         +' supera el límite permitido de 2MB.'
-                        +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                        +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
                         +'</div>';
                     imgWrap.append(imgSizeError);
                     $('#image-size-error').show();
@@ -65,7 +65,7 @@ function ImgUpload() {
                 if (imgArray.length > maxLength - 1) {
                     var imgLimitExceeded = '<div class="alert alert-warning alert-dismissible fade show" role="alert">'
                         +`<strong>Atención!</strong> Haz alcanzado el límite de <b>${maxLength}</b> imágenes que puedes subir.`
-                        +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                        +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
                         +'</div>';
                     imgWrap.append(imgLimitExceeded);
                     $('#image-size-error').show();

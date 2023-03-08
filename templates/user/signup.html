@@ -4,85 +4,90 @@
 {% block title %}Signup{% endblock title %}
 
 {% block extraCSS %}
-    <link rel="stylesheet" href="{% static 'user/signup.css' %}">
+<link rel="stylesheet" href="{% static 'user/signup.css' %}">
 {% endblock extraCSS %}
 
 {% block body %}
-    <div class="container">
-        <div class="row pt-3">
-            <h1><b>Crea tu cuenta !!!</b></h1>
-            <hr class="border border-dark border-2 opacity-50">
-            <div class="col-sm-6 text-center">
-                {% if form.errors %}
-                    <div class="alert alert-danger">
-                        <ul class="mb-0">
-                            {% for field in form %}
-                                {% for error in field.errors %}
-                                    <li>{{ error }}</li>
-                                {% endfor %}
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
-                <form enctype="multipart/form-data" method="post">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="id_username" class="form-label"><b>{{ form.username.label }}</b></label>
-                        {{ form.username }}
-                        <div id="usernameHelp" class="form-text">Ingresa un nombre de usuario.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_email" class="form-label"><b>{{ form.email.label }}</b></label>
-                        {{ form.email }}
-                        <div id="emailHelp" class="form-text">Ingresa un correo electrónico.</div>
-                    </div>
-                    <div class="mb-3" id="show_hide_password1">
-                        <label for="id_password1" class="form-label"><b>{{ form.password1.label }}</b></label>
-                        <div class="input-group">
-                            {{ form.password1 }}
-                            <div class="input-group-text">
-                                <a href="#"><i class="bi bi-eye-slash" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <div id="password1Help" class="form-text">Ingresa una contraseña segura.</div>
-                    </div>
-                    <div class="mb-3" id="show_hide_password2">
-                        <label for="id_password2" class="form-label"><b>{{ form.password2.label }}</b></label>
-                        <div class="input-group">
-                            {{ form.password2 }}
-                            <div class="input-group-text">
-                                <a href="#" ><i class="bi bi-eye-slash" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <div id="password2Help" class="form-text">Repite la contraseña.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_type_user" class="form-label"><b>{{ form.type_user.label }}</b></label>
-                        {{ form.type_user }}
-                        <div id="type_userHelp" class="form-text">Selecciona el tipo de usuario.</div>
-                    </div>
-                    <div class="mb-3 image-preview-container">
-                        <div class="preview">
-                            <img id="preview-selected-image">
-                        </div>
-                        <label for="id_profile_picture" class="form-label"><b>{{ form.profile_picture.label }}</b></label>
-                        {{ form.profile_picture }}
-                        <div id="profile_pictureHelp" class="form-text">Sube tu mejor selfie.</div>
-                    </div>
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-primary" type="submit">Crear</button>
-                    </div>
-                </form>
+<div class="container">
+    <div class="row pt-3">
+        <h1 class="font-weight-bold"><b>Crea tu cuenta !!!</b></h1>
+        <hr class="border border-dark border-2 opacity-50 w-100">
+        <div class="col-sm-6 text-center">
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
             </div>
-            <div class="col-sm-6 align-self-end">
-                <div class="pets">
-                    <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\dogAndCat.png' %}" alt="Perro y gato">
+            {% endif %}
+            <form enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username" class="font-weight-bold">{{ form.username.label }}</label>
+                    {{ form.username }}
+                    <small id="usernameHelp" class="form-text text-muted">Ingresa un nombre de usuario.</small>
                 </div>
+                <div class="form-group">
+                    <label for="id_email" class="font-weight-bold">{{ form.email.label }}</label>
+                    {{ form.email }}
+                    <small id="emailHelp" class="form-text text-muted">Ingresa un correo electrónico.</small>
+                </div>
+                <div class="form-group" id="show_hide_password1">
+                    <label for="id_password1" class="font-weight-bold">{{ form.password1.label }}</label>
+                    <div class="input-group">
+                        {{ form.password1 }}
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="toggle_password1">
+                                <i class="fa fa-solid fa-eye-slash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <small id="password1Help" class="form-text text-muted">Ingresa una contraseña segura.</small>
+                </div>
+                <div class="form-group" id="show_hide_password2">
+                    <label for="id_password2" class="font-weight-bold">{{ form.password2.label }}</label>
+                    <div class="input-group">
+                        {{ form.password2 }}
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="toggle_password2">
+                                <i class="fa fa-solid fa-eye-slash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <small id="password2Help" class="form-text text-muted">Repite la contraseña.</small>
+                </div>
+                <div class="form-group">
+                    <label for="id_type_user" class="font-weight-bold">{{ form.type_user.label }}</label>
+                    {{ form.type_user }}
+                    <small id="type_userHelp" class="form-text text-muted">Selecciona el tipo de usuario.</small>
+                </div>
+                <div class="form-group image-preview-container">
+                    <div class="preview">
+                        <img id="preview-selected-image" class="img-fluid">
+                    </div>
+                    <label for="id_profile_picture" class="font-weight-bold">{{ form.profile_picture.label }}</label>
+                    {{ form.profile_picture }}
+                    <small id="profile_pictureHelp" class="form-text text-muted">Sube tu mejor selfie.</small>
+                </div>
+                <div class="d-grid gap-2 pt-3 pb-3">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Crear</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-6 align-self-end">
+            <div class="pets">
+                <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\dogAndCat.png' %}"
+                    alt="Perro y gato">
             </div>
         </div>
     </div>
+</div>
 {% endblock body %}
 
 {% block extraJS %}
-    <script src="{% static 'user/signup.js' %}"></script>
+<script src="{% static 'user/signup.js' %}"></script>
 {% endblock extraJS %}

@@ -32,7 +32,7 @@ class CustomUserForm(UserCreationForm):
         self.fields['password2'].widget.attrs['aria-describedby'] = 'password2Help'
         
         self.fields['type_user'].label = 'Tipo de usuario'
-        self.fields['type_user'].widget.attrs['class'] = 'form-select'
+        self.fields['type_user'].widget.attrs['class'] = 'form-control'
         self.fields['type_user'].widget.attrs['aria-describedby'] = 'type_userHelp'
         
         self.fields['profile_picture'].label = 'Imagen de perfil'

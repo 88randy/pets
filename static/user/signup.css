@@ -1,9 +1,9 @@
 .image-preview-container {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(216, 215, 215);
     padding: 1rem;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .image-preview-container img {

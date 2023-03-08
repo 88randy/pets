@@ -1,14 +1,14 @@
 from django.urls import reverse
 from django.db import transaction
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from apps.pet.forms import PetForm, ImageForm
-from apps.pet.models import PetImage
+from apps.pet.models import Pet, PetImage
 
 # Create your views here.
 
-class CreatePetView(CreateView):
+class PetCreateView(CreateView):
     template_name = 'pet/create_pet.html'
     form_class = PetForm
     success_url = '/mascota/crear/correcto'
@@ -42,6 +42,25 @@ class CreatePetView(CreateView):
     
     """ def get_success_url(self):
         return reverse('pet_created', args=(self.object.pk,)) """
+
+class PetDetail(DetailView):
+    model = Pet
+    template_name='pet/pet_detail.html'
+    
+    def get_pictures_pet(self):
+        return self.object.pet_images.all()
+    
+    def get_context_data(self, **kwargs):
+        context = {}
+        if self.object:
+            context["object"] = self.object
+            context['object_pictures'] = self.get_pictures_pet()
+            context_object_name = self.get_context_object_name(self.object)
+            if context_object_name:
+                context[context_object_name] = self.object
+        context.update(kwargs)
+        return super().get_context_data(**context)
+
 
 # Success forms
 
