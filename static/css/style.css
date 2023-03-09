@@ -8927,14 +8927,14 @@ textarea.form-control {
     width: 100%;
     content: '';
     opacity: 1;
-    background: #215c6d;
-    background: -moz-linear-gradient(45deg, #215c6d 0%, #00908d 100%);
-    background: -webkit-gradient(left bottom, right top, color-stop(0%, #215c6d), color-stop(100%, #00908d));
-    background: -webkit-linear-gradient(45deg, #215c6d 0%, #00908d 100%);
-    background: -o-linear-gradient(45deg, #215c6d 0%, #00908d 100%);
-    background: -ms-linear-gradient(45deg, #215c6d 0%, #00908d 100%);
-    background: linear-gradient(45deg, #215c6d 0%, #00908d 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#215c6d', endColorstr='#00908d', GradientType=1 ); }
+    background: #215c6d80;
+    background: -moz-linear-gradient(45deg, #215c6d80 0%, #00908d 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, #215c6d80), color-stop(100%, #00908d));
+    background: -webkit-linear-gradient(45deg, #215c6d80 0%, #00908d 100%);
+    background: -o-linear-gradient(45deg, #215c6d80 0%, #00908d 100%);
+    background: -ms-linear-gradient(45deg, #215c6d80 0%, #00908d 100%);
+    background: linear-gradient(45deg, #215c6d80 0%, #00908d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#215c6d80', endColorstr='#00908d', GradientType=1 ); }
     @media (min-width: 992px) {
       .ftco-appointment .overlay {
         width: 50%; } }

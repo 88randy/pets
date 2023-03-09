@@ -1,5 +1,18 @@
 body {
     font-family: Montserrat, sans-serif;
+    cursor: url('images/favicon-32x32.png'), auto;
+}
+
+a:hover {
+    cursor: url('images/2favicon-32x32.png'), auto !important;
+}
+
+button:hover {
+    cursor: url('images/2favicon-32x32.png'), auto !important;
+}
+
+input:hover {
+    cursor: url('images/2favicon-32x32.png'), auto !important;
 }
 
 .navbar-brand {

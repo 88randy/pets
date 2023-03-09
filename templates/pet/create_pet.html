@@ -11,8 +11,8 @@
 <section class="ftco-section bg-light ftco-no-pt ftco-intro">
     <div class="container">
         <div class="row pt-3">
-            <h1><b>Sube la información de una mascota!!!</b></h1>
-            <hr class="border border-dark border-2 opacity-50">
+            <h1><b>Información de la mascota!!!</b></h1>
+            <hr class="border border-dark border-2 opacity-50 w-100">
             <div class="col-sm-6 text-center">
                 {% if form.errors %}
                     <div class="alert alert-danger">
@@ -53,7 +53,7 @@
                     <div class="mb-3">
                         <label for="id_age" class="form-label"><b>{{ form.age.label }}</b></label>
                         {{ form.age }}
-                        <div id="ageHelp" class="form-text">Ingresa la edad de la mascota.</div>
+                        <div id="ageHelp" class="form-text">Ingresa la edad de la mascota en años, si tiene menos de un año ingresa 1.</div>
                     </div>
                     <div class="mb-3">
                         <label for="id_sex" class="form-label"><b>{{ form.sex.label }}</b></label>
@@ -94,7 +94,7 @@
             </div>
             <div class="col-sm-6 align-self-end">
                 <div class="pets">
-                    <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\pastorAlemanAnimado03.jpg' %}" alt="Perro y gato">
+                    <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\RW-cachorro.png' %}" alt="Perro y gato">
                 </div>
             </div>
         </div>
