@@ -1,0 +1,268 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Formulario de adopción{% endblock title %}
+
+{% block extraCSS %}
+<style>
+    .loader {
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    .loader:before {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 5px solid #40bab6;
+        border-top-color: transparent;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+{% endblock extraCSS %}
+
+{% block body %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <h1>Solicitud de adopción para {{ pet.name }}</h1>
+                <hr>
+            </div>
+            <div class="col-md-6 text-center">
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.created_by }}
+                    {{ form.modified_by }}
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="id_name"><b>{{ form.name.label }}</b></label>
+                            {{ form.name }}
+                            <small id="nameHelp" class="form-text text-muted">Ingresa tu nombre.</small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="id_last_name"><b>{{ form.last_name.label }}</b></label>
+                            {{ form.last_name }}
+                            <small id="last_nameHelp" class="form-text text-muted">Ingresa tu primer apellido.</small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="id_second_last_name"><b>{{ form.second_last_name.label }}</b></label>
+                            {{ form.second_last_name }}
+                            <small id="second_last_nameHelp" class="form-text text-muted">Ingresa tu segundo
+                                apellido.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="id_email"><b>{{ form.email.label }}</b></label>
+                            {{ form.email }}
+                            <small id="emailHelp" class="form-text text-muted">Ingresa tu correo electrónico.</small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_phone_number"><b>{{ form.phone_number.label }}</b></label>
+                            {{ form.phone_number }}
+                            <small id="phone_numberHelp" class="form-text text-muted">Ingresa tu número de
+                                teléfono.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="id_address"><b>{{ form.address.label }}</b></label>
+                            {{ form.address }}
+                            <small id="addressHelp" class="form-text text-muted">Ingresa tu dirección, calle y
+                                número.</small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_postal_code"><b>{{ form.postal_code.label }}</b></label>
+                            <div class="input-group mb-3">
+                                {{ form.postal_code }}
+                                <div class="input-group-append">
+                                    <button id="btn-validate-cp" class="btn btn-outline-danger" type="button">Validar</button>
+                                </div>
+                                <div id="loader" class="loader"></div>
+                            </div>
+                            <small id="postal_codeHelp" class="form-text text-muted">Ingresa tu código postal.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="id_country"><b>{{ form.country.label }}</b></label>
+                            {{ form.country }}
+                            <small id="countryHelp" class="form-text text-muted">Pais de residencia.</small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_state"><b>{{ form.state.label }}</b></label>
+                            {{ form.state }}
+                            <small id="stateHelp" class="form-text text-muted">Estado de residencia.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="id_city"><b>{{ form.city.label }}</b></label>
+                            {{ form.city }}
+                            <small id="cityHelp" class="form-text text-muted">Ciudad de residencia.</small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_town" class="form-label"><b>{{ form.town.label }}</b></label>
+                            {{ form.town }}
+                            <small id="townHelp" class="form-text text-muted">Delegación, municipio o alcaldía de residencia.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="id_message" class="form-label"><b>{{ form.message.label }}</b></label>
+                            {{ form.message }}
+                            <small id="messageHelp" class="form-text">Ingresa un mensaje.</small>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 pb-3">
+                        <button class="btn btn-primary btn-block" type="submit">Enviar solicitud de adopción</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 align-self-stretch">
+                    <div class="vet-card">
+                        <ul>
+                            <li><strong>Raza:</strong> {{pet.breed}}</li>
+                            <li><strong>Edad:</strong> {{pet.age}}{% if object.age == 1 %} año {% else %} años {% endif %}</li>
+                            <li><strong>Sexo:</strong> {{pet.get_sex_display}}</li>
+                            <li><strong>Tamaño:</strong> {{pet.get_size_display}} </li>
+                            <li><strong>Tipo de Mascota:</strong> {{pet.get_type_of_pet_display}}</li>
+                        </ul>
+                        <p class="description">{{pet.description}}</p>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-9 mx-auto ftco-animate">
+                        <div class="work mb-4 img d-flex align-items-end"
+                            style="background-image: url(/media/{{ pet.first_image }});">
+                            {% if pet.first_image %}
+                                <a href="/media/{{ pet.first_image }}"
+                                    class="icon image-popup d-flex justify-content-center align-items-center">
+                                    <span class="fa fa-expand"></span>
+                                </a>
+                            {% endif %}
+                            <div class="desc w-100 px-4">
+                                <div class="text w-100 mb-3">
+                                    <span>{{ pet.get_type_of_pet_display }}</span>
+                                    <h2>{{ pet.name }}</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal que muestra un mensaje -->
+    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageModalLabel">Mensaje de alerta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="id-modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}
+
+{% block extraJS %}
+<script>
+    // Obtener el campo de código postal y agregar un controlador de eventos
+    const postalCodeInput = document.querySelector('#id_postal_code');
+    const btnValidateCP = document.querySelector('#btn-validate-cp')
+    const loader = document.getElementById("loader");
+
+    btnValidateCP.addEventListener('click', handlePostalCodeChange);
+
+    function handlePostalCodeChange() {
+        loader.style.display = "flex";
+        btnValidateCP.disabled = true;
+        setTimeout(() => {
+        if (! postalCodeInput.value ){
+            const modalBody = document.getElementById('id-modal-body');
+            modalBody.textContent = 'Formato no válido de código postal.';
+            $('#messageModal').modal('show');
+            clearAddress();
+            return
+        }
+        loader.style.display = "none";
+        const postalCode = postalCodeInput.value;
+        fetch(window.location.origin + `/mascota/postal-codes/${postalCode}`)
+            .then(response => response.json())
+            .then(data => {
+                btnValidateCP.disabled = false;
+                if (data[postalCode]) {
+                    // Rellenar los campos de país, estado, ciudad y municipio con la información obtenida
+                    document.querySelector('#id_country').value = data[postalCode]['pais'];
+                    document.querySelector('#id_state').value = data[postalCode]['estado'];
+                    document.querySelector('#id_city').value = data[postalCode]['municipio'];
+
+                    const townSelect = document.querySelector('#id_town');
+                    townSelect.innerHTML = ''; // Limpiamos el select por si ya tenía opciones
+
+                    data[postalCode]['asentamiento'].forEach(asentamiento => {
+                        const option = document.createElement('option');
+                        option.value = asentamiento;
+                        option.text = asentamiento;
+                        townSelect.appendChild(option);
+                    });
+                } else {
+                    btnValidateCP.disabled = false;
+                    const modalBody = document.getElementById('id-modal-body');
+                    modalBody.textContent = data['mensaje'];
+                    $('#messageModal').modal('show');
+                    clearAddress();
+                }
+            })
+            .catch(error => console.error(error));
+        }, 2000);
+    }
+
+    function clearAddress(){
+        document.querySelector('#id_country').value = null;
+        document.querySelector('#id_state').value = null;
+        document.querySelector('#id_city').value = null;
+        document.querySelector('#id_town').innerHTML = null;
+    }
+</script>
+{% endblock extraJS %}

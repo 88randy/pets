@@ -32,7 +32,7 @@ LOCAL_APPS = [
 ]
 
 THIRD_APPS = [
-    
+    'django_filters',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -107,3 +107,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # User
 
 AUTH_USER_MODEL = 'user.CustomUser'
+
+# Login url
+LOGIN_URL = '/usuario/login'
+
+# Configuración para envío de correos con SMTP de Gmail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT'))
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+BCC_LIST = list(os.environ.get('BCC_LIST'))

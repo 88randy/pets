@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Listado de mis mascotas{% endblock title %}
+
+{% block extraCSS %}
+{% endblock extraCSS %}
+
+{% block body %}
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center pb-5 mb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2>Listado de mis mascotas publicadas</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for object in object_list %}
+                <div class="col-md-4 ftco-animate">
+                    <div class="work mb-4 img d-flex align-items-end"
+                        style="background-image: url(/media/{{ object.first_image }});">
+                        {% if object.first_image %}
+                            <a href="/media/{{ object.first_image }}"
+                                class="icon image-popup d-flex justify-content-center align-items-center">
+                                <span class="fa fa-expand"></span>
+                            </a>
+                        {% endif %}
+                        <div class="desc w-100 px-4">
+                            <div class="text w-100 mb-3">
+                                <span>{{ object.get_type_of_pet_display }}</span>
+                                <h2><a href="{% url 'pet_detail' object.pk %}">{{ object.name }}</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-btn mb-5s">
+                        <a href="{% url 'pet_detail' object.pk %}" class="btn btn-primary btn-block">Detalles</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock body %}
+
+{% block extraJS %}
+{% endblock extraJS %}

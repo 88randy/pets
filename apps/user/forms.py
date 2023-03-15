@@ -1,14 +1,14 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from apps.user.models import CustomUser
 
-class CustomUserForm(UserCreationForm):
+class SignupForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
         self.fields['username'].label = 'Nombre de usuario'
-        self.fields['username'].widget.attrs['placeholder'] = 'example'
+        self.fields['username'].widget.attrs['placeholder'] = 'usuario'
         self.fields['username'].widget.attrs['class'] = 'form-control'
         self.fields['username'].widget.attrs['autocomplete'] = 'off'
         self.fields['username'].widget.attrs['aria-describedby'] = 'usernameHelp'
@@ -51,4 +51,27 @@ class CustomUserForm(UserCreationForm):
             'password2',
             'type_user',
             'profile_picture',
+        ]
+
+class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.fields['username'].label = 'Nombre de usuario'
+        self.fields['username'].widget.attrs['placeholder'] = 'usuario'
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].widget.attrs['autocomplete'] = 'off'
+        self.fields['username'].widget.attrs['aria-describedby'] = 'usernameHelp'
+        
+        self.fields['password'].label = 'Contraseña'
+        self.fields['password'].widget = forms.PasswordInput()
+        self.fields['password'].widget.attrs['class'] = 'form-control password'
+        self.fields['password'].widget.attrs['placeholder'] = '******'
+        self.fields['password'].widget.attrs['aria-describedby'] = 'password1Help'
+    
+    class Meta:
+        model = CustomUser
+        fields = [
+            'username',
+            'password'
         ]

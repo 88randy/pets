@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
+
+{% block extraCSS %}
+
+{% endblock extraCSS %}
+
+{% block body %}
+<div class="container">
+    <div class="row pt-3">
+        <h1 class="font-weight-bold"><b>Inicia sesión</b></h1>
+        <hr class="border border-dark border-2 opacity-50 w-100">
+        <div class="col-sm-6 text-center">
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul class="">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <form enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username" class="font-weight-bold">{{ form.username.label }}</label>
+                    {{ form.username }}
+                    <small id="usernameHelp" class="form-text text-muted">Ingresa tu nombre de usuario.</small>
+                </div>
+                <div class="form-group" id="show_hide_password">
+                    <label for="id_password" class="font-weight-bold">{{ form.password.label }}</label>
+                    <div class="input-group">
+                        {{ form.password }}
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="toggle_password">
+                                <i class="fa fa-solid fa-eye-slash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <small id="password1Help" class="form-text text-muted">Ingresa tu contraseña.</small>
+                </div>
+                <div class="d-grid gap-2 pt-3 pb-3">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Ingresar</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-6 align-self-end">
+            <div class="pets">
+                <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\dogAndCat.png' %}"
+                    alt="Perro y gato">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block extraJS %}
+<script src="{% static 'user/login.js' %}"></script>
+{% endblock extraJS %}

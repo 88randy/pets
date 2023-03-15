@@ -68,13 +68,27 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item {% if request.path == '/' %}active{% endif %}"><a href="{% url 'index' %}" class="nav-link">Inicio</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Información</a></li>
+					<li class="nav-item"><a href="{% url 'list_of_pets_for_adoption' %}" class="nav-link">Mascotas</a></li>
 					<!-- <li class="nav-item"><a href="#" class="nav-link">Servicios</a></li> -->
-					<li class="nav-item"><a href="#" class="nav-link">Galeria</a></li>
+					<li class="nav-item"><a href="{% url 'index' %}#section-gallery" class="nav-link">Galeria</a></li>
 					{% comment %} <li class="nav-item"><a href="#" class="nav-link">Blog</a></li> {% endcomment %}
-					<li class="nav-item"><a href="#" class="nav-link">Contacto</a></li>
+					<li class="nav-item"><a href="{% url 'index' %}#section-contact" class="nav-link">Contacto</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'my_pet_list' %}">Mis mascotas</a>
+                            <a class="dropdown-item" href="{% url 'pet_create' %}">Crear mascota</a>
+                            <a class="dropdown-item" href="#">Opción 3</a>
+                        </div>
+                    </li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#logout-modal">Cerrar sesión</a></li>
+                        {% else %}
                     <li class="nav-item {% if request.path == '/usuario/signup' %}active{% endif %}"><a href="{% url 'signup' %}" class="nav-link">Registrate</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">inicia sesión</a></li>
+                    <li class="nav-item {% if request.path == '/usuario/login' %}active{% endif %}"><a href="{% url 'login' %}" class="nav-link">inicia sesión</a></li>
+                    {% endif %}
 				</ul>
 			</div>
 		</div>
@@ -106,8 +120,8 @@
                                 <h3 class="heading">Pasea con tu mascota</h3>
                                 <p>¡Sal a pasear con tu mascota! Es importante que hagan ejercicio y tengan estimulación mental, y sacarlos a caminar es una forma fácil y efectiva de lograrlo. Además, pasar tiempo al aire libre con tu mascota puede mejorar la salud y la felicidad tanto de tu perro como la tuya.</p>
                                 <p>¡Así que coge la correa y sal a dar un paseo!</p>
-                                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
-                                        class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+                                {% comment %} <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -120,8 +134,8 @@
                                 <h3 class="heading">Alimenta sanamente a tu mascota</h3>
                                 <p>Alimenta bien a tu mascota para mantenerla sana y feliz. Proporciónale alimentos de calidad y específicos para su especie y edad, dale la cantidad adecuada para su tamaño y nivel de actividad. Una buena nutrición es clave para prevenir enfermedades y prolongar su vida.</p>
                                 <p>¡Dale a tu compañero la nutrición que merece!</p>
-                                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
-                                        class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+                                {% comment %} <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -134,8 +148,8 @@
                                 <h3 class="heading">Cuidados esenciales</h3>
                                 <p>Vacunar y bañar a tu mascota son medidas importantes para mantener su salud y bienestar. Las vacunas ayudan a prevenir enfermedades graves y potencialmente mortales, mientras que los baños regulares ayudan a mantener la higiene y a prevenir problemas de piel y pelaje.</p>
                                 <p>¡Mantén a tu amigo peludo feliz y saludable con la atención y cuidados que necesita!</p>
-                                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
-                                        class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+                                {% comment %} <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -523,7 +537,7 @@
             </div>
         </section> {% endcomment %}
     
-        <section class="ftco-section">
+        <section class="ftco-section" id="section-gallery">
             <div class="container">
                 <div class="row justify-content-center pb-5 mb-3">
                     <div class="col-md-7 heading-section text-center ftco-animate">
@@ -687,27 +701,28 @@
         </section> {% endcomment %}
     
         <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img"
-            style="background-image: url({% static 'images/bg_3.jpg' %});">
+            style="background-image: url({% static 'images/bg_3.jpg' %});" id="section-contact">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row d-md-flex justify-content-end">
                     <div class="col-md-12 col-lg-6 half p-3 py-5 pl-lg-5 ftco-animate">
                         <h2 class="mb-4">Contactanos</h2>
-                        <form action="#" class="appointment">
+                        <form method="post" class="appointment">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Tu Nombre">
+                                        <input type="text" class="form-control" placeholder="Tu Nombre" name="name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Tu email">
+                                        <input type="email" class="form-control" placeholder="Tu email" name="email">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea name="" id="" cols="30" rows="7" class="form-control"
+                                        <textarea name="message" cols="30" rows="7" class="form-control"
                                             placeholder="Mensaje"></textarea>
                                     </div>
                                 </div>
@@ -801,6 +816,80 @@
 		</div>
 	</footer>
 
+    <!-- Modal para cerrar sesión -->
+    <div class="modal fade" id="logout-modal" tabindex="-1" role="dialog" aria-labelledby="logout-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logout-modal-label">Confirmación de cierre de sesión</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas cerrar la sesión?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if 'success' in message.tags %}
+                <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="successModalLabel">¡Correcto!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ message | safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% elif 'error' in message.tags %}
+                <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="errorModalLabel">¡Error!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ message | safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% elif 'warning' in message.tags %}
+                <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="warningModalLabel">¡Atención!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ message | safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
@@ -816,7 +905,13 @@
     <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
     <script src="{% static 'js/scrollax.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-
+    <script>
+        $(document).ready(function(){
+            $('#successModal').modal('show');
+            $('#errorModal').modal('show');
+            $('#warningModal').modal('show');
+        });
+    </script>
     {% block extraJS %}
         {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
         <script src="{% static 'js/google-map.js' %}"></script> {% endcomment %}

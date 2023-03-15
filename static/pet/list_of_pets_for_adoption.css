@@ -1,0 +1,20 @@
+.retract {
+    display: block;
+}
+
+.collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease;
+}
+
+.collapsing.show {
+    height: auto;
+}
+
+
+.page-item.active .page-link{
+    background-color: #18a48f;
+    border-color: #18a48f;
+}

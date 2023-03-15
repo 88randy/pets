@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Nueva solicitud de adopción</title>
+</head>
+<body>
+	<div style="background-color: #f5f5f5; padding: 20px;">
+		<h2 style="color: #333333;">¡Hola!</h2>
+		<p>Acabamos de recibir una nueva solicitud de adopción.</p>
+		<p>A continuación te comparto todos los datos para que le puedas dar seguimiento:</p>
+		<h3>Solicitud de adopción</h3>
+		<ul>
+			<li><strong>id: </strong>{{ request_form.pk }}</li>
+		</ul>
+		<h3>Usuario</h3>
+		<ul>
+			<li><strong>id:</strong> {{ user.pk }}</li>
+			<li><strong>username:</strong> {{ user }}</li>
+		</ul>
+		<h3>Mascota</h3>
+		<ul>
+			<li>id: {{ pet.pk }}</li>
+			<li><strong>Nombre:</strong> {{ pet.name }}</li>
+			<li><strong>Raza:</strong> {{ pet.breed }}</li>
+			<li><strong>Edad:</strong> {{ pet.age }}{% if pet.age == 1 %} año {% else %} años {% endif %}</li>
+			<li><strong>Sexo:</strong> {{ pet.get_sex_display }}</li>
+			<li><strong>Tamaño:</strong> {{ pet.get_size_display }} </li>
+			<li><strong>Tipo de Mascota:</strong> {{ pet.get_type_of_pet_display }}</li>
+		</ul>
+		<h3>Datos:</h3>
+		<ul>
+			<li><strong>Nombre: </strong>{{ form.name }} {{ form.last_name }} {{ form.second_last_name }}</li>
+			<li><strong>Email: </strong>{{ form.email }}</li>
+			<li><strong>Teléfono: </strong>{{ form.phone_number }}</li>
+			<li><strong>Dirección: </strong>{{ form.address }}, cp {{ form.postal_code }}, {{ form.town }}, {{ form.city }}, {{ form.state }}, {{ form.country }}</li>
+			<li><strong>Mensaje: </strong>{{ form.message }}</li>
+		</ul>
+		<p>¡Por favor darle seguimiento en cuanto antes!</p>
+		<p>Saludos,</p>
+		<p>El equipo de Mascota en casa</p>
+	</div>
+</body>
+</html>

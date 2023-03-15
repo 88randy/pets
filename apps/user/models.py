@@ -24,8 +24,9 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     TYPE_USER = (
-        ('A', _('Adoptante')),
-        ('O', _('Organización')),
+        ('A', _('Quiero Adoptar')),
+        ('Q', _('Quiero dar en Adopción')),
+        ('O', _('Somos una Organización')),
     )
     
     uuid = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
