@@ -1,7 +1,7 @@
 # Mi mascota
 Esta es una aplicación web para la adopción de mascotas, donde los usuarios pueden buscar mascotas disponibles para adopción, crear perfiles de mascotas y enviar formularios de adopción.
 
-Puedes visitar el sitio desde el siguiente [enlace](https://88randy.pythonanywhere.com/).
+Puedes visitar la aplicación desde el siguiente [enlace](https://88randy.pythonanywhere.com/).
 
 [![Mi mascota](static/images/index-image.png)](https://88randy.pythonanywhere.com/)
 
