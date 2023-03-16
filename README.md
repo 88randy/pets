@@ -3,7 +3,7 @@ Esta es una aplicación web para la adopción de mascotas, donde los usuarios pu
 
 Puedes visitar el sitio desde el siguiente [enlace](https://88randy.pythonanywhere.com/).
 
-![Mi mascota](static/images/index-image.png)
+[![Mi mascota](static/images/index-image.png)](https://88randy.pythonanywhere.com/)
 
 ## Índice
 - [Mi mascota](#mi-mascota)
