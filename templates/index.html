@@ -39,18 +39,18 @@
 			<div class="row">
 				<div class="col-md-6 d-flex align-items-center">
 					<p class="mb-0 phone pl-md-2">
-						<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a>
-						<a href="#"><span class="fa fa-paper-plane mr-1"></span> randy88allan@gmail.com</a>
+						<!-- <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a> -->
+						<a href="mailto: rlopez21@udavinci.edu.mx"><span class="fa fa-paper-plane mr-1"></span> rlopez21@udavinci.edu.mx</a>
 					</p>
 				</div>
 				<div class="col-md-6 d-flex justify-content-md-end">
 					<div class="social-media">
 						<p class="mb-0 d-flex">
-							<a href="#" class="d-flex align-items-center justify-content-center"><span
+							<a href="#" class="d-flex align-items-center justify-content-center" data-toggle="modal" data-target="#temporal-modal"><span
 									class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-							<a href="#" class="d-flex align-items-center justify-content-center"><span
+							<a href="#" class="d-flex align-items-center justify-content-center" data-toggle="modal" data-target="#temporal-modal"><span
 									class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-							<a href="#" class="d-flex align-items-center justify-content-center"><span
+							<a href="#" class="d-flex align-items-center justify-content-center" data-toggle="modal" data-target="#temporal-modal"><span
 									class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
 						</p>
 					</div>
@@ -60,7 +60,7 @@
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>Mascota en casa</a>
+			<a class="navbar-brand" href="{% url 'index' %}"><span class="flaticon-pawprint-1 mr-2"></span>Mi mascota</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
 				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="fa fa-bars"></span> Menu
@@ -79,9 +79,12 @@
                             {{ user.username }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{% url 'my_pet_list' %}">Mis mascotas</a>
-                            <a class="dropdown-item" href="{% url 'pet_create' %}">Crear mascota</a>
-                            <a class="dropdown-item" href="#">Opción 3</a>
+                            {% if user.type_user == 'A' %}
+                                <a class="dropdown-item" href="{% url 'list_of_pets_for_adoption' %}">Adoptar</a>
+                            {% else %}
+                                <a class="dropdown-item" href="{% url 'my_pet_list' %}">Mis mascotas</a>
+                                <a class="dropdown-item" href="{% url 'pet_create' %}">Crear mascota</a>
+                            {% endif %}
                         </div>
                     </li>
                         <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#logout-modal">Cerrar sesión</a></li>
@@ -832,6 +835,25 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="temporal-modal" tabindex="-1" role="dialog" aria-labelledby="temporal-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="temporal-modal-label">Mensaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Estamos construyendo nuestras redes sociales, pronto estarán listas. ¡Gracias¡
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

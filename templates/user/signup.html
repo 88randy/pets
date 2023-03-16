@@ -12,14 +12,14 @@
     <div class="row pt-3">
         <h1 class="font-weight-bold"><b>Crea tu cuenta !!!</b></h1>
         <hr class="border border-dark border-2 opacity-50 w-100">
-        <div class="col-sm-6 text-center">
+        <div class="col-sm-6">
             {% if form.errors %}
             <div class="alert alert-danger">
                 <ul class="mb-0">
                     {% for field in form %}
-                    {% for error in field.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
+                        {% for error in field.errors %}
+                        <li><b>{{ field.label }}</b>: {{ error }}</li>
+                        {% endfor %}
                     {% endfor %}
                 </ul>
             </div>
@@ -80,7 +80,7 @@
         </div>
         <div class="col-sm-6 align-self-end">
             <div class="pets">
-                <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\dogAndCat.png' %}"
+                <img class="img-fluid rounded mx-auto d-block" src="{% static 'images/dogAndCat.png' %}"
                     alt="Perro y gato">
             </div>
         </div>

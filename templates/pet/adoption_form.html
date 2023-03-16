@@ -43,19 +43,19 @@
                 <h1>Solicitud de adopción para {{ pet.name }}</h1>
                 <hr>
             </div>
-            <div class="col-md-6 text-center">
+            <div class="col-md-6">
                 {% if form.errors %}
                 <div class="alert alert-danger">
                     <ul class="mb-0">
                         {% for field in form %}
                             {% for error in field.errors %}
-                                <li>{{ error }}</li>
+                                <li><b>{{ field.label }}</b>: {{ error }}</li>
                             {% endfor %}
                         {% endfor %}
                     </ul>
                 </div>
                 {% endif %}
-                <form method="post">
+                <form method="post" id="id-form">
                     {% csrf_token %}
                     {{ form.created_by }}
                     {{ form.modified_by }}
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     <div class="d-grid gap-2 pb-3">
-                        <button class="btn btn-primary btn-block" type="submit">Enviar solicitud de adopción</button>
+                        <button class="btn btn-primary btn-block" type="submit" id="id-btn-submit">Enviar solicitud de adopción</button>
                     </div>
                 </form>
             </div>
@@ -264,5 +264,9 @@
         document.querySelector('#id_city').value = null;
         document.querySelector('#id_town').innerHTML = null;
     }
+
+    $("#id-form").on("submit", function(){
+        document.querySelector('#id-btn-submit').disabled = true;
+    })
 </script>
 {% endblock extraJS %}

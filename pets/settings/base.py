@@ -118,4 +118,4 @@ EMAIL_PORT = int(os.environ.get('EMAIL_PORT'))
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-BCC_LIST = list(os.environ.get('BCC_LIST'))
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None

@@ -4,7 +4,7 @@
 {% block title %}Añadir mascota{% endblock title %}
 
 {% block extraCSS %}
-    <link rel="stylesheet" href="{% static 'pet\create_pet.css' %}">
+    <link rel="stylesheet" href="{% static 'pet/create_pet.css' %}">
 {% endblock extraCSS %}
 
 {% block body %}
@@ -13,13 +13,13 @@
         <div class="row pt-3">
             <h1><b>Información de la mascota!!!</b></h1>
             <hr class="border border-dark border-2 opacity-50 w-100">
-            <div class="col-sm-6 text-center">
+            <div class="col-sm-6 ">
                 {% if form.errors %}
                     <div class="alert alert-danger">
                         <ul class="mb-0">
                             {% for field in form %}
                                 {% for error in field.errors %}
-                                    <li>{{ error }}</li>
+                                    <li><b>{{ field.label }}</b>: {{ error }}</li>
                                 {% endfor %}
                             {% endfor %}
                         </ul>
@@ -30,7 +30,7 @@
                         <ul class="mb-0">
                             {% for field in images_form %}
                                 {% for error in field.errors %}
-                                    <li>{{ error }}</li>
+                                    <li><b>{{ field.label }}</b>: {{ error }}</li>
                                 {% endfor %}
                             {% endfor %}
                         </ul>
@@ -88,13 +88,13 @@
                         </div>
                     </div>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary btn-block" type="submit">Crear</button>
+                        <button class="btn btn-primary btn-block" type="submit" id="id-btn-submit">Crear</button>
                     </div>
                 </form>
             </div>
             <div class="col-sm-6 align-self-end">
                 <div class="pets">
-                    <img class="img-fluid rounded mx-auto d-block" src="{% static 'images\RW-cachorro.png' %}" alt="Perro y gato">
+                    <img class="img-fluid rounded mx-auto d-block" src="{% static 'images/RW-cachorro.png' %}" alt="Perro y gato">
                 </div>
             </div>
         </div>
@@ -103,5 +103,5 @@
 {% endblock body %}
 
 {% block extraJS %}
-    <script src="{% static 'pet\create_pet.js' %}"></script>
+    <script src="{% static 'pet/create_pet.js' %}"></script>
 {% endblock extraJS %}

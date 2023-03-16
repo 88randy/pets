@@ -277,4 +277,4 @@ def get_postal_details(request, postal_code):
 # Success forms
 @login_required
 def success_create_pet(request):
-    return render(request, 'pet\success_create_pet.html')
+    return render(request, 'pet/success_create_pet.html')

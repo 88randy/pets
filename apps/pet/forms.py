@@ -17,6 +17,7 @@ class PetForm(forms.ModelForm):
         
         self.fields['breed'].label = 'Raza'
         self.fields['breed'].widget.attrs['placeholder'] = 'Raza'
+        self.fields['breed'].widget.attrs['value'] = 'N/A'
         self.fields['breed'].widget.attrs['class'] = 'form-control'
         self.fields['breed'].widget.attrs['autocomplete'] = 'off'
         self.fields['breed'].widget.attrs['aria-describedby'] = 'breedHelp'

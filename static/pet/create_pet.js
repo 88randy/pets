@@ -118,4 +118,8 @@ function ImgUpload() {
         imgArray.forEach(file => dataTransfer.items.add(file));
         document.querySelector('input[name="images"]').files = dataTransfer.files;
     });
+
+    $("#create-pet").on("submit", function(){
+        document.querySelector('#id-btn-submit').disabled = true;
+    })
 }

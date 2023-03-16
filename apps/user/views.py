@@ -90,6 +90,7 @@ class LoginView(FormView):
         if user is not None:
             # Iniciar sesión para el usuario autenticado
             login(self.request, user)
+            messages.success(self.request, f'Bienvenido <b>{ self.request.user }</b>, tu sesión inició exitosamente.')
             return super().form_valid(form)
         else:
             # Si las credenciales son inválidas, mostrar un mensaje de error
