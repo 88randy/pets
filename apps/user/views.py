@@ -102,7 +102,9 @@ class LogoutView(LogoutView):
     template_name = 'user/logout.html'
     success_url = reverse_lazy('login')
 
-
+class InfoView(TemplateView):
+    template_name = 'info.html'
+    
 # Custom errors
 
 def error_404(request, exception):

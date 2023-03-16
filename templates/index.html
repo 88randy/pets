@@ -37,13 +37,16 @@
     <div class="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 d-flex align-items-center">
+				<div class="col-md-4 d-flex align-items-center">
 					<p class="mb-0 phone pl-md-2">
 						<!-- <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a> -->
 						<a href="mailto: rlopez21@udavinci.edu.mx"><span class="fa fa-paper-plane mr-1"></span> rlopez21@udavinci.edu.mx</a>
 					</p>
 				</div>
-				<div class="col-md-6 d-flex justify-content-md-end">
+                <div class="col-md-4 d-flex align-items-center justify-content-md-center text-md-center">
+					<a href="https://udavinci.edu.mx/" target="_blank"><img src="{% static 'images/logo-udavinci.png' %}" class="img-fluid" alt="Logo de la universidad UDAVINCI" style="max-width: 40%;"></a>
+				</div>
+				<div class="col-md-4 d-flex justify-content-md-end">
 					<div class="social-media">
 						<p class="mb-0 d-flex">
 							<a href="#" class="d-flex align-items-center justify-content-center" data-toggle="modal" data-target="#temporal-modal"><span
@@ -105,7 +108,7 @@
                     data-scrollax-parent="true">
                     <div class="col-md-11 ftco-animate text-center">
                         <h1 class="mb-4">Buscando hogares cálidos para seres extraordinarios. </h1>
-                        <p><a href="#" class="btn btn-primary mr-md-4 py-3 px-4">Leer más <span
+                        <p><a href="{% url 'info' %}" class="btn btn-primary mr-md-4 py-3 px-4">Leer más <span
                                     class="ion-ios-arrow-forward"></span></a></p>
                     </div>
                 </div>

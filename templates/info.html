@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Información{% endblock title %}
+
+{% block extraCSS %}
+
+{% endblock extraCSS %}
+
+{% block body %}
+<div class="container">
+    <div class="row pt-3">
+        <div class="col-md-12">
+            <h1 class="text-center mb-5">Mi masctoa</h1>
+            <p class="lead text-justify">
+                Bienvenidos a la iniciativa de adopción de mascotas, donde ayudamos a encontrar un hogar amoroso
+                para perros y gatos que necesitan un lugar seguro para vivir. Esta aplicación fue desarrollada en Django
+                por <i>Randy Allan</i>, como proyecto final para la Maestria en computación impartida por la <i>Universidad Da
+                Vinci</i>. Es una herramienta fácil de usar que conecta a adoptantes potenciales con animales en necesidad de un hogar
+                permanente.
+            </p>
+            <p class="lead text-justify">
+                La misión es poner fin a la triste realidad de que miles de mascotas son abandonadas cada año en
+                todo el mundo, y creo que la adopción es la respuesta. Adoptar una mascota no solo brinda un hogar
+                amoroso a un animal necesitado, sino que también trae una gran alegría y compañía a nuestras vidas.
+            </p>
+            <p class="lead text-justify">
+                La aplicación en ofrece una amplia gama de funciones para ayudarte en tu búsqueda de una
+                mascota para adoptar. Puedes buscar mascotas por raza, edad, tamaño y ver fotos y
+                descripciones detalladas de cada mascota para tomar una decisión informada.
+            </p>
+            <p class="lead text-justify">
+                Además, se planeará trabajar en un futuro cercano con refugios y organizaciones de rescate de animales
+                en
+                todo el país para garantizar que los animales sean examinados médicamente, esterilizados y vacunados
+                antes de ser colocados en hogares amorosos. Trabajaré arduamente para asegurarme de que usar la
+                aplicación sea una experiencia positiva.
+            </p>
+            <p class="lead text-justify">
+                Esta aplicación para adopción de mascotas es una iniciativa maravillosa que
+                ayuda a conectar a los animales necesitados con hogares amorosos. Puedes estar pendiente de las futuras
+                mejoras.
+            </p>
+            <p class="lead text-center">
+                <img src="{% static 'images/udavinci-pets.png' %}" class="img-fluid"
+                    alt="Logo de la universidad UDAVINCI y mascotas animadas">
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block extraJS %}
+
+{% endblock extraJS %}

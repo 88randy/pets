@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.conf.urls import handler404
 from django.conf.urls.static import static
 
-from apps.user.views import IndexView, error_404
+from apps.user.views import IndexView, InfoView, error_404
 
 handler404 = error_404
 
@@ -28,4 +28,5 @@ urlpatterns = [
     path('usuario/', include('apps.user.urls')),
     path('mascota/', include('apps.pet.urls')),
     path('', IndexView.as_view(), name = 'index'),
+    path('info/', InfoView.as_view(), name = 'info'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
